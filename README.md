@@ -3,7 +3,7 @@ Docker for [Testing](https://github.com/Ncode2014/nikabut) Userbot
 
 ## How to Use?
 ```
-docker pull Ncode2014/nekadok:groovy
+docker pull Ncode2014/nekadok:buster
 ```
 
 ## Build Status
