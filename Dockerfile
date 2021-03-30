@@ -46,8 +46,6 @@ RUN set -ex \
     && chown root:root /usr/bin/chromedriver \
     && chmod 0755 /usr/bin/chromedriver \
 
-    # to fix some kinda yee
-    && pip3 install --upgrade pip setuptools wheel \
 
     # Install Python modules
     && pip3 install -r requirements.txt \
