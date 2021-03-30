@@ -47,7 +47,6 @@ RUN set -ex \
     && chmod 0755 /usr/bin/chromedriver \
 
     # Install Python modules
-    && pip3 install --upgrade pip setuptools wheel \
     && pip3 install -r requirements.txt \
     && rm requirements.txt \
 
