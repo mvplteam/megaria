@@ -19,6 +19,7 @@ pybase64
 https://github.com/pyrogram/pyrogram/archive/refs/heads/master.zip
 python-dotenv
 tenacity
+https://github.com/Ncode2014/cloudflare-scrape/archive/refs/heads/master.zip
 https://github.com/psf/requests/archive/refs/heads/master.zip
 https://github.com/Ncode2014/gdown/archive/refs/heads/master.zip
 https://raw.githubusercontent.com/Ncode2014/nekadok/req/heroku-dlp-master.zip
