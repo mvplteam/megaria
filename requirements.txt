@@ -23,6 +23,7 @@ https://github.com/Ncode2014/cloudscraper/archive/refs/heads/master.zip
 https://github.com/psf/requests/archive/refs/heads/master.zip
 https://github.com/Ncode2014/gdown/archive/refs/heads/master.zip
 https://raw.githubusercontent.com/Ncode2014/nekadok/req/heroku-dlp-master.zip
+youtube-dl
 python-magic
 python-telegram-bot
 pytz
