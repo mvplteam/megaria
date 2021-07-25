@@ -16,7 +16,7 @@ messages
 psutil
 psycopg2-binary
 pybase64
-urllib3==1.26.6
+urllib3==1.25.8
 https://github.com/pyrogram/pyrogram/archive/refs/heads/master.zip
 python-dotenv
 tenacity
