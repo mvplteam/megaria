@@ -15,7 +15,7 @@ lxml
 https://github.com/trp07/messages/archive/refs/heads/master.zip
 psutil
 psycopg2-binary
-https://github.com/mayeut/pybase64/archive/refs/heads/master.zip
+pybase64
 urllib3
 https://github.com/pyrogram/pyrogram/archive/refs/heads/master.zip
 python-dotenv
