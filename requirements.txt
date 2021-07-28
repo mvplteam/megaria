@@ -1,5 +1,5 @@
 aiohttp
-aria2p
+https://github.com/pawamoy/aria2p/archive/refs/heads/master.zip
 appdirs
 beautifulsoup4
 feedparser
@@ -12,11 +12,11 @@ html-telegraph-poster
 js2py
 lk21
 lxml
-messages
+https://github.com/trp07/messages/archive/refs/heads/master.zip
 psutil
 psycopg2-binary
-pybase64
-urllib3==1.25.8
+https://github.com/mayeut/pybase64/archive/refs/heads/master.zip
+urllib3
 https://github.com/pyrogram/pyrogram/archive/refs/heads/master.zip
 python-dotenv
 tenacity
@@ -24,10 +24,10 @@ https://github.com/Ncode2014/cloudscraper/archive/refs/heads/master.zip
 requests
 https://github.com/Ncode2014/gdown/archive/refs/heads/master.zip
 https://github.com/yt-dlp/yt-dlp/archive/refs/heads/master.zip
-youtube-dl
+https://github.com/ytdl-org/youtube-dl/refs/heads/master.zip
 python-magic
-python-telegram-bot
+https://github.com/python-telegram-bot/python-telegram-bot/archive/refs/heads/master.zip
 pytz
-speedtest-cli
+https://github.com/sivel/speedtest-cli/archive/refs/heads/master.zip
 telegraph
 TgCrypto
