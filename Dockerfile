@@ -1,73 +1,63 @@
-FROM python:3.9.2-buster
+FROM python:3-slim-buster
 
-ENV DEBIAN_FRONTEND noninteractive
-
-ADD https://raw.githubusercontent.com/Ncode2014/stuff/Kernelmaker/requirements.txt requirements.txt
-RUN set -ex \
+# Setup Meh    
+RUN apt-get -qq update \
+    && apt-get -qq -y install software-properties-common \
+    && apt-add-repository non-free \
+    && echo "deb http://deb.debian.org/debian experimental main" > /etc/apt/sources.list.d/experimental.list \
     && apt-get -qq update \
     && apt-get -qq -y install --no-install-recommends \
-        apt-utils \
-        aria2 \
-        bash \
-        build-essential \
-        curl \
-        ffmpeg \
-        figlet \
-        git \
-        gnupg2 \
-        jq \
-        libpq-dev \
-        libssl-dev \
-        libwebp6 \
-        libxml2 \
-        megatools \
-        neofetch \
-        postgresql \
-        pv \
-        sudo \
-        unar \
-        unrar-free \
-        unzip \
-        wget \
-        xz-utils \
-        zip \
-
-    # Install Google Chrome
-    && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list \
-    && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-    && apt-get -qq update \
-    && apt-get -qq -y install google-chrome-stable \
-
-    # Install chromedriver
-    && wget -N https://chromedriver.storage.googleapis.com/$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip -P ~/ \
-    && unzip ~/chromedriver_linux64.zip -d ~/ \
-    && rm ~/chromedriver_linux64.zip \
-    && mv -f ~/chromedriver /usr/bin/chromedriver \
-    && chown root:root /usr/bin/chromedriver \
-    && chmod 0755 /usr/bin/chromedriver \
-
-    # Install Python modules
-    && pip3 install -r requirements.txt \
+        # build deps
+        autoconf automake g++ gcc git libtool m4 make swig \
+        # mega sdk deps
+        libc-ares-dev libcrypto++-dev libcurl4-openssl-dev \
+        libfreeimage-dev libsodium-dev libsqlite3-dev libssl-dev zlib1g-dev \
+        # mirror bot deps
+        curl wget jq locales pv mediainfo python3-lxml unzip ca-certificates \
+    && apt-get -qq -t experimental upgrade -y && apt-get -qq -y autoremove --purge \
+    && sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen \
+    && locale-gen \
+    # requirements mirror-bot
+    && wget https://raw.githubusercontent.com/Ncode2014/megaria/req/requirements.txt \
+    && pip3 install --no-cache-dir -r requirements.txt \
     && rm requirements.txt \
+    # setup mega sdk
+    && MEGA_SDK_VERSION='3.8.2' \
+    && git clone https://github.com/meganz/sdk.git --depth=1 -b v$MEGA_SDK_VERSION ~/home/sdk \
+    && cd ~/home/sdk && rm -rf .git \
+    && autoupdate -fIv && ./autogen.sh \
+    && ./configure --disable-silent-rules --enable-python --with-sodium --disable-examples \
+    && make -j$(nproc --all) \
+    && cd bindings/python/ && python3 setup.py bdist_wheel \
+    && cd dist/ && pip3 install --no-cache-dir megasdk-$MEGA_SDK_VERSION-*.whl 
 
-    # Install RAR
-    && mkdir -p /tmp/ \
+# rewrite Some important stuff to make efficient time
+RUN mkdir -p /tmp/ && cd /tmp/ \
+    && gdown --id 1pwY8R_nCkVorOqzrkSJkaSY2dZUiHgau -O /tmp/megaria.tar.gz \
+    && tar -xzvf megaria.tar.gz && cd megaria/ \
+    && cp -v aria2c ffmpeg ffprobe /usr/bin && chmod +x /usr/bin/aria2c \
+    && chmod +x /usr/bin/ffmpeg /usr/bin/ffprobe \
+    && cp -v ca-certificates.crt /usr/local/share/ca-certificates && update-ca-certificates \
+    && rm -rf megaria && cd ~/home && rm -f ~/tmp/megaria.tar.gz \
+    # 7zip unofficial
     && cd /tmp/ \
-    && wget -O /tmp/rarlinux.tar.gz http://www.rarlab.com/rar/rarlinux-x64-6.0.0.tar.gz \
-    && tar -xzvf rarlinux.tar.gz \
-    && cd rar \
-    && cp -v rar unrar /usr/bin/ \
-    # clean up
-    && rm -rf /tmp/rar* \
+    && wget https://www.7-zip.org/a/7z2102-linux-x64.tar.xz \
+    && tar -xvf 7z2102-linux-x64.tar.xz \
+    && cp -v 7zz /usr/bin/ && chmod +x /usr/bin/7zz \
+    && rm -f ~/tmp/7z2102-linux-x64.tar.xz && rm -r /tmp/* \
 
-    # Cleanup
-    && apt-get -qq -y purge --auto-remove \
-        apt-utils \
-        build-essential \
-        gnupg2 \
+    # cleanup env
+    && apt-get -qq -y purge --autoremove \
+       autoconf automake g++ gcc libtool m4 make software-properties-common swig \
     && apt-get -qq -y clean \
-    && rm -rf -- /var/lib/apt/lists/* /var/cache/apt/archives/* /etc/apt/sources.list.d/*
+    && rm -rf -- /var/lib/apt/lists/* /var/cache/apt/archives/* /etc/apt/sources.list.d/* /home/sdk
 
-EXPOSE 80 443
+# just adding
+WORKDIR /usr/src/app
+RUN chmod 777 /usr/src/app
 
-CMD ["python3"]
+# enviroments
+ENV DEBIAN_FRONTEND=noninteractive \
+    LANG=en_US.UTF-8 \
+    LANGUAGE=en_US:en \
+    LC_ALL=en_US.UTF-8
