@@ -1,16 +1,22 @@
 # Docker for Torrent-Bot
-Docker for [Torrent](https://github.com/Ncode2014/MirrorX) Bot
+Docker for [Torrent](https://github.com/Ncode2014/re-mirrorbot) Bot
 
 ## How to Use?
+
+just adding on your Dockerfile 
 ```
-docker pull narima/megaria:latest
+docker pull narima/megaria:latest 
+```
+or
+```
+FROM narima/megaria:latest
 ```
 
-## warning
+## Warning
 ```
 I warn everyone use this My Docker
 Because it's for personal perpose not for public
-bcz if Heroku or whatever service/vps found this docker
+bcz if Heroku or whatever service/vps if found this docker
 You maybe can get a ban so don't blame me if you still using this and accept consequences if you get ban
 ```
 
@@ -21,3 +27,4 @@ You maybe can get a ban so don't blame me if you still using this and accept con
 
 ## Credits
 * [AnggaR96s](https://github.com/AnggaR96s) (Source)
+* [Izzy](https://github.com/lzzy12/) (Source Dockerfile for mega)
