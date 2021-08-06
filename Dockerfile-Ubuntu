@@ -160,7 +160,7 @@ RUN set -ex \
         libc-ares-dev libqt4-dev qt4-qmake libcrypto++-dev libcurl4-openssl-dev \
         libfreeimage-dev libsodium-dev libsqlite3-dev libssl-dev zlib1g-dev libc6 \
         # mirror bot deps
-        curl wget jq xz-utils tar locales pv python3-lxml neofetch \
+        curl wget jq xz-utils tar locales aria2 pv python3-lxml neofetch \
     && apt-get -qq -y autoremove --purge \
     && sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen \
     && locale-gen \
@@ -182,8 +182,7 @@ RUN set -ex \
 RUN mkdir -p /tmp/ && cd /tmp/ \
     && gdown --id 1pwY8R_nCkVorOqzrkSJkaSY2dZUiHgau -O /tmp/megaria.tar.gz \
     && tar -xzvf megaria.tar.gz && cd megaria/ \
-    && cp -v aria2c ffmpeg ffprobe /usr/bin && chmod +x /usr/bin/aria2c /usr/bin/ffmpeg /usr/bin/ffprobe \
-    && cp -v ca-certificates.crt /usr/local/share/ca-certificates && update-ca-certificates \
+    && cp -v ffmpeg ffprobe /usr/bin && chmod +x /usr/bin/ffmpeg /usr/bin/ffprobe \
     && rm -rf megaria \
     # 7zip unofficial
     && cd /tmp/ \
