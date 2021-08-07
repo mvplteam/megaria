@@ -2,9 +2,12 @@ FROM python:3-slim-buster
 
 # Setup Meh    
 RUN apt-get -qq update \
-    && apt-get -qq -y install software-properties-common \
+    && apt-get -qq -y install software-properties-common curl gpg \
     && apt-add-repository non-free \
     && echo "deb http://deb.debian.org/debian experimental main" > /etc/apt/sources.list.d/experimental.list \
+    # for qbittorrent enchaned
+    && echo 'deb http://download.opensuse.org/repositories/home:/nikoneko:/test/Debian_10/ /' | tee /etc/apt/sources.list.d/home:nikoneko:test.list \
+    && curl -fsSL https://download.opensuse.org/repositories/home:nikoneko:test/Debian_10/Release.key | gpg --dearmor | tee /etc/apt/trusted.gpg.d/home_nikoneko_test.gpg > /dev/null \
     && apt-get -qq update \
     && apt-get -qq -y install --no-install-recommends \
         # build deps
@@ -13,7 +16,7 @@ RUN apt-get -qq update \
         libc-ares-dev libcrypto++-dev libcurl4-openssl-dev \
         libfreeimage-dev libsodium-dev libsqlite3-dev libssl-dev zlib1g-dev \
         # mirror bot deps
-        curl wget jq locales pv mediainfo python3-lxml unzip aria2 ca-certificates \
+        wget jq locales pv mediainfo python3-lxml unzip aria2 qbittorrent-enhanced ca-certificates \
     && apt-get -qq -t experimental upgrade -y && apt-get -qq -y autoremove --purge \
     && sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen \
     && locale-gen \
@@ -47,7 +50,7 @@ RUN mkdir -p /tmp/ && cd /tmp/ \
 
     # cleanup env
     && apt-get -qq -y purge --autoremove \
-       autoconf automake g++ gcc libtool m4 make software-properties-common swig \
+       autoconf gpg automake g++ gcc libtool m4 make software-properties-common swig \
     && apt-get -qq -y clean \
     && rm -rf -- /var/lib/apt/lists/* /var/cache/apt/archives/* /etc/apt/sources.list.d/* /home/sdk
 
