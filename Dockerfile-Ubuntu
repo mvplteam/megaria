@@ -161,7 +161,7 @@ RUN set -ex \
         libc-ares-dev libqt4-dev qt4-qmake libcrypto++-dev libcurl4-openssl-dev \
         libfreeimage-dev libsodium-dev libsqlite3-dev libssl-dev zlib1g-dev libc6 \
         # mirror bot deps
-        curl wget jq xz-utils tar locales aria2 pv python3-lxml qbittorrent-enhanced  neofetch \
+        curl wget jq xz-utils tar locales aria2 pv python3-lxml qbittorrent-enhanced neofetch \
     && apt-get -qq -y autoremove --purge \
     && sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen \
     && locale-gen \

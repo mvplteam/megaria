@@ -16,7 +16,7 @@ RUN apt-get -qq update \
         libc-ares-dev libcrypto++-dev libcurl4-openssl-dev \
         libfreeimage-dev libsodium-dev libsqlite3-dev libssl-dev zlib1g-dev \
         # mirror bot deps
-        wget jq locales pv mediainfo python3-lxml unzip aria2 qbittorrent-enhanced ca-certificates \
+        wget jq locales pv mediainfo python3-lxml unzip aria2 xz-utils neofetch qbittorrent-enhanced ca-certificates \
     && apt-get -qq -t experimental upgrade -y && apt-get -qq -y autoremove --purge \
     && sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen \
     && locale-gen \
