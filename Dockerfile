@@ -1,4 +1,4 @@
-FROM python:3-slim-buster
+FROM narima/base:bull 
 
 # Setup Meh    
 RUN apt-get -qq update \
@@ -6,8 +6,9 @@ RUN apt-get -qq update \
     && apt-add-repository non-free \
     && echo "deb http://deb.debian.org/debian experimental main" > /etc/apt/sources.list.d/experimental.list \
     # for qbittorrent enchaned
-    && echo 'deb http://download.opensuse.org/repositories/home:/nikoneko:/test/Debian_10/ /' | tee /etc/apt/sources.list.d/home:nikoneko:test.list \
-    && curl -fsSL https://download.opensuse.org/repositories/home:nikoneko:test/Debian_10/Release.key | gpg --dearmor | tee /etc/apt/trusted.gpg.d/home_nikoneko_test.gpg > /dev/null \
+    && echo 'deb http://download.opensuse.org/repositories/home:/nikoneko:/qbittorrent-nightly/Debian_Testing/ /' | tee /etc/apt/sources.list.d/home:nikoneko:qbittorrent-nightly.list\
+    && curl -fsSL https://download.opensuse.org/repositories/home:nikoneko:qbittorrent-nightly/Debian_Testing/Release.key | gpg --dearmor | tee /etc/apt/trusted.gpg.d/home_nikoneko_qbittorrent-nightly.gpg > /dev/null \
+    # for important package
     && apt-get -qq update \
     && apt-get -qq -y install --no-install-recommends \
         # build deps
@@ -43,10 +44,10 @@ RUN mkdir -p /tmp/ && cd /tmp/ \
     && rm -rf megaria && cd ~/home && rm -f ~/tmp/megaria.tar.gz \
     # 7zip unofficial
     && cd /tmp/ \
-    && wget https://www.7-zip.org/a/7z2102-linux-x64.tar.xz \
-    && tar -xvf 7z2102-linux-x64.tar.xz \
+    && wget https://www.7-zip.org/a/7z2103-linux-x64.tar.xz \
+    && tar -xvf 7z2103-linux-x64.tar.xz \
     && cp -v 7zz /usr/bin/ && chmod +x /usr/bin/7zz \
-    && rm -f ~/tmp/7z2102-linux-x64.tar.xz && rm -r /tmp/* \
+    && rm -f ~/tmp/7z2103-linux-x64.tar.xz && rm -r /tmp/* \
 
     # cleanup env
     && apt-get -qq -y purge --autoremove \
