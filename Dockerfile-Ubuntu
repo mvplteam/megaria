@@ -1,4 +1,4 @@
-FROM narima/megaria:ubase
+FROM narima/base:ubase
 
 RUN set -ex \
     # setup env
