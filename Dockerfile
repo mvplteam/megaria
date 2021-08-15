@@ -6,7 +6,7 @@ RUN apt-get -qq update \
     && apt-add-repository non-free \
     && echo "deb http://deb.debian.org/debian experimental main" > /etc/apt/sources.list.d/experimental.list \
     # for qbittorrent enchaned
-    && echo 'deb http://download.opensuse.org/repositories/home:/nikoneko:/qbittorrent-nightly/Debian_Testing/ /' | tee /etc/apt/sources.list.d/home:nikoneko:qbittorrent-nightly.list\
+    && echo 'deb http://download.opensuse.org/repositories/home:/nikoneko:/qbittorrent-nightly/Debian_Testing/ /' | tee /etc/apt/sources.list.d/home:nikoneko:qbittorrent-nightly.list \
     && curl -fsSL https://download.opensuse.org/repositories/home:nikoneko:qbittorrent-nightly/Debian_Testing/Release.key | gpg --dearmor | tee /etc/apt/trusted.gpg.d/home_nikoneko_qbittorrent-nightly.gpg > /dev/null \
     # for important package
     && apt-get -qq update \
