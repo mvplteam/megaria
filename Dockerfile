@@ -17,7 +17,7 @@ RUN apt-get -qq update \
         libc-ares-dev libcrypto++-dev libcurl4-openssl-dev \
         libfreeimage-dev libsodium-dev libsqlite3-dev libssl-dev zlib1g-dev \
         # mirror bot deps
-        wget jq locales pv mediainfo python3-lxml unzip aria2 xz-utils neofetch qbittorrent-enhanced-nox ca-certificates \
+        wget jq locales pv mediainfo python3-lxml unzip aria2 xz-utils neofetch qbittorrent-enhanced-nox \
     && apt-get -qq -t experimental upgrade -y && apt-get -qq -y autoremove --purge \
     && sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen \
     && locale-gen \
@@ -37,6 +37,7 @@ RUN apt-get -qq update \
 
 # rewrite Some important stuff to make efficient time
 RUN mkdir -p /tmp/ && cd /tmp/ \
+    # ffmpeg stuff 
     && gdown --id 1pwY8R_nCkVorOqzrkSJkaSY2dZUiHgau -O /tmp/megaria.tar.gz \
     && tar -xzvf megaria.tar.gz && cd megaria/ \
     && cp -v ffmpeg ffprobe /usr/bin \
