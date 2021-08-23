@@ -4,7 +4,7 @@ FROM narima/base:bull
 RUN apt-get -qq update \
     && apt-get -qq -y install software-properties-common curl gpg \
     && apt-add-repository non-free \
-    && echo "deb http://deb.debian.org/debian experimental main" > /etc/apt/sources.list.d/experimental.list \
+    && echo "deb http://deb.debian.org/debian unstable main contrib" > /etc/apt/sources.list.d/unstable.list \
     # for qbittorrent enchaned
     && echo 'deb http://download.opensuse.org/repositories/home:/nikoneko:/qbittorrent-nightly/Debian_Testing/ /' | tee /etc/apt/sources.list.d/home:nikoneko:qbittorrent-nightly.list \
     && curl -fsSL https://download.opensuse.org/repositories/home:nikoneko:qbittorrent-nightly/Debian_Testing/Release.key | gpg --dearmor | tee /etc/apt/trusted.gpg.d/home_nikoneko_qbittorrent-nightly.gpg > /dev/null \
@@ -18,7 +18,7 @@ RUN apt-get -qq update \
         libfreeimage-dev libsodium-dev libsqlite3-dev libssl-dev zlib1g-dev \
         # mirror bot deps
         wget jq locales pv mediainfo python3-lxml unzip aria2 xz-utils neofetch qbittorrent-enhanced-nox \
-    && apt-get -qq -t experimental upgrade -y && apt-get -qq -y autoremove --purge \
+    && apt-get -qq -t unstable upgrade -y && apt-get -qq -y autoremove --purge \
     && sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen \
     && locale-gen \
     # requirements mirror-bot
