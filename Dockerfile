@@ -53,7 +53,7 @@ RUN mkdir -p /tmp/ && cd /tmp/ \
     # cleanup env
     && apt-get -qq -y purge --autoremove \
        autoconf gpg automake g++ gcc libtool m4 make software-properties-common swig \
-    && apt-get -qq -y clean \
+    && apt-get -qq -y clean && apt-get clean --dry-run \
     && rm -rf -- /var/lib/apt/lists/* /var/cache/apt/archives/* /etc/apt/sources.list.d/* /home/sdk
 
 # just adding
