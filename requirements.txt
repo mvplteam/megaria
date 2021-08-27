@@ -27,6 +27,7 @@ requests
 qbittorrent-api
 torrentool
 https://github.com/Ncode2014/gdown/archive/refs/heads/master.zip
+https://github.com/hemantapkh/pyshorteners/archive/refs/heads/main.zip
 https://github.com/yt-dlp/yt-dlp/archive/refs/heads/master.zip
 https://github.com/ytdl-org/youtube-dl/archive/refs/heads/master.zip
 python-magic
