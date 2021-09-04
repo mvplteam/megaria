@@ -28,7 +28,7 @@ RUN apk add \
      && for i in *.UTF-8; do cp -a "$i" "${i%%.UTF-8}"; done \
      && pip3 install --no-cache-dir --upgrade setuptools wheel \
      # Installing MegaSDK Python Binding
-     && MEGA_SDK_VERSION="3.9.2" \
+     && MEGA_SDK_VERSION="3.9.4" \
      && git clone https://github.com/meganz/sdk.git --depth=1 -b v$MEGA_SDK_VERSION ~/home/sdk \
      && cd ~/home/sdk && rm -rf .git \
      && ./autogen.sh && ./configure --disable-silent-rules --with-python3 --enable-python --with-sodium --disable-examples \
