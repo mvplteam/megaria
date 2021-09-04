@@ -26,7 +26,7 @@ https://github.com/Ncode2014/cloudscraper/archive/refs/heads/master.zip
 requests
 qbittorrent-api
 torrentool==1.1.0
-https://github.com/Ncode2014/gdown/archive/refs/heads/master.zip
+gdown
 https://github.com/hemantapkh/pyshorteners/archive/refs/heads/main.zip
 https://github.com/yt-dlp/yt-dlp/archive/refs/heads/master.zip
 https://github.com/ytdl-org/youtube-dl/archive/refs/heads/master.zip
