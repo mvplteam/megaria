@@ -1,8 +1,8 @@
 FROM narima/base:bull 
 
 # Setup Meh    
-RUN apt-get -qq update \
-    && apt-get -qq -y install software-properties-common curl gpg \
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+RUN apt-get -qq -y install --no-install-recommends software-properties-common curl gpg \
     && apt-add-repository non-free \
     && echo "deb http://deb.debian.org/debian unstable main contrib" > /etc/apt/sources.list.d/unstable.list \
     # for qbittorrent enchaned
@@ -22,7 +22,7 @@ RUN apt-get -qq update \
     && sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen \
     && locale-gen \
     # requirements mirror-bot
-    && wget https://raw.githubusercontent.com/Ncode2014/megaria/req/requirements.txt \
+    && curl https://raw.githubusercontent.com/Ncode2014/megaria/req/requirements.txt -o requirements.txt\
     && pip3 install --no-cache-dir -r requirements.txt \
     && rm requirements.txt \
     # setup mega sdk
@@ -45,7 +45,7 @@ RUN mkdir -p /tmp/ && cd /tmp/ \
     && rm -rf megaria && cd ~/home && rm -f ~/tmp/megaria.tar.gz \
     # 7zip unofficial
     && cd /tmp/ \
-    && wget https://www.7-zip.org/a/7z2103-linux-x64.tar.xz \
+    && curl https://www.7-zip.org/a/7z2103-linux-x64.tar.xz -o 7z2103-linux-x64.tar.xz \
     && tar -xvf 7z2103-linux-x64.tar.xz \
     && cp -v 7zz /usr/bin/ && chmod +x /usr/bin/7zz \
     && rm -f ~/tmp/7z2103-linux-x64.tar.xz && rm -r /tmp/* \
