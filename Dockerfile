@@ -2,7 +2,7 @@ FROM narima/base:bull
 
 # Setup Meh    
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-RUN apt-get -qq -y install --no-install-recommends software-properties-common curl gpg \
+RUN apt-get -qq update && apt-get -qq -y install --no-install-recommends software-properties-common curl gpg \
     && apt-add-repository non-free \
     && echo "deb http://deb.debian.org/debian unstable main contrib" > /etc/apt/sources.list.d/unstable.list \
     # for qbittorrent enchaned
