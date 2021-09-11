@@ -17,6 +17,7 @@ psutil
 psycopg2-binary
 pybase64
 urllib3
+feedparser
 https://github.com/pyrogram/pyrogram/archive/refs/heads/master.zip
 python-dotenv
 tenacity
