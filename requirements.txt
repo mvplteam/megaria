@@ -21,12 +21,11 @@ feedparser
 https://github.com/pyrogram/pyrogram/archive/refs/heads/master.zip
 python-dotenv
 tenacity
-https://github.com/Ncode2014/cloudscraper/archive/refs/heads/master.zip
+https://github.com/nekaru-storage/cloudscraper/archive/refs/heads/master.zip
 https://github.com/psf/requests/archive/refs/heads/main.zip
 qbittorrent-api
 torrentool==1.1.0
-gdown
-https://github.com/hemantapkh/pyshorteners/archive/refs/heads/main.zip
+https://github.com/nekaru-storage/pyshorteners/archive/refs/heads/main.zip
 https://github.com/yt-dlp/yt-dlp/archive/refs/heads/master.zip
 https://github.com/ytdl-org/youtube-dl/archive/refs/heads/master.zip
 python-magic
