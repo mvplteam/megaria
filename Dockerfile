@@ -15,9 +15,12 @@ RUN apt-get -qq update && apt-get -qq -y install --no-install-recommends softwar
         autoconf automake g++ gcc git libtool m4 make swig \
         # mega sdk deps
         libc-ares-dev libcrypto++-dev libcurl4-openssl-dev \
-        libfreeimage-dev libsodium-dev libsqlite3-dev libssl-dev zlib1g-dev \
+        libfreeimage-dev libsodium-dev libsqlite3-dev libssl-dev zlib1g-dev  \
         # mirror bot deps
-        wget jq locales pv mediainfo python3-lxml unzip aria2 xz-utils neofetch qbittorrent-enhanced-nox \
+        wget jq locales pv mediainfo python3-lxml unzip aria2 xz-utils \
+        neofetch qbittorrent-enhanced-nox p7zip-full p7zip-rar ffmpeg \
+        # arm64 stuff
+        libpq-dev libffi-dev \
     && apt-get -qq -t unstable upgrade -y && apt-get -qq -y autoremove --purge \
     && sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen \
     && locale-gen \
@@ -34,21 +37,6 @@ RUN apt-get -qq update && apt-get -qq -y install --no-install-recommends softwar
     && make -j$(nproc --all) \
     && cd bindings/python/ && python3 setup.py bdist_wheel \
     && cd dist/ && pip3 install --no-cache-dir megasdk-$MEGA_SDK_VERSION-*.whl 
-
-# rewrite Some important stuff to make efficient time
-RUN mkdir -p /tmp/ && cd /tmp/ \
-    # ffmpeg stuff 
-    && gdown --id 1pwY8R_nCkVorOqzrkSJkaSY2dZUiHgau -O /tmp/megaria.tar.gz \
-    && tar -xzvf megaria.tar.gz && cd megaria/ \
-    && cp -v ffmpeg ffprobe /usr/bin \
-    && chmod +x /usr/bin/ffmpeg /usr/bin/ffprobe \
-    && rm -rf megaria && cd ~/home && rm -f ~/tmp/megaria.tar.gz \
-    # 7zip unofficial
-    && cd /tmp/ \
-    && curl https://www.7-zip.org/a/7z2103-linux-x64.tar.xz -o 7z2103-linux-x64.tar.xz \
-    && tar -xvf 7z2103-linux-x64.tar.xz \
-    && cp -v 7zz /usr/bin/ && chmod +x /usr/bin/7zz \
-    && rm -f ~/tmp/7z2103-linux-x64.tar.xz && rm -r /tmp/* \
 
     # cleanup env
     && apt-get -qq -y purge --autoremove \
