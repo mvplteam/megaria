@@ -39,7 +39,7 @@ RUN apt-get -qq update && apt-get -qq -y install --no-install-recommends softwar
     && cd dist/ && pip3 install --no-cache-dir megasdk-$MEGA_SDK_VERSION-*.whl 
 
     # cleanup env
-    && apt-get -qq -y purge --autoremove \
+RUN apt-get -qq -y purge --autoremove \
        autoconf gpg automake g++ gcc libtool m4 make software-properties-common swig \
     && apt-get -qq -y clean && apt-get clean --dry-run \
     && rm -rf -- /var/lib/apt/lists/* /var/cache/apt/archives/* /etc/apt/sources.list.d/* /home/sdk
