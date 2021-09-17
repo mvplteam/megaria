@@ -23,14 +23,6 @@ jobs:
         with:
           context: .
           file: ./Dockerfile-Base
-          platforms: linux/amd64
+          platforms: linux/amd64, linux/arm64
           push: true
           tags: narima/base:ubase
-
-      - name: Alert via Telegram
-        run: |
-          function sendTG() {
-              curl -s "https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendmessage" \
-              --data "text=${*}&chat_id=${{ secrets.TELEGRAM_TO }}&parse_mode=Markdown&disable_notification=True"
-          }
-          sendTG "*Base Docker Ubuntu Base Ready to Use:* [Link](https://hub.docker.com/r/narima/base/tags)" &> /dev/null
