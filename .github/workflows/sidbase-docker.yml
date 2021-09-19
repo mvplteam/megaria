@@ -30,6 +30,6 @@ jobs:
         with:
           context: .
           file: ./base/Dockerfile-BaseSid
-          platforms: linux/amd64, linux/arm64
+          platforms: linux/amd64
           push: true
           tags: narima/base:sid
