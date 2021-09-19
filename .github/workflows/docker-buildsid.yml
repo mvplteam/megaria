@@ -1,0 +1,42 @@
+name: Megaria Build Image
+on:
+  push:
+    paths:
+      - "Dockerfile"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1.2.0
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1.6.0
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1.10.0
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and publish to Docker Hub
+        uses: docker/build-push-action@v2.7.0
+        with:
+          context: .
+          file: ./megasdk/Dockerfile-Sid
+          platforms: linux/amd64, linux/arm64
+          push: true
+          tags: narima/megaria:latest
+
+      - name: Alert via Telegram
+        run: |
+          function sendTG() {
+              curl -s "https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendmessage" \
+              --data "text=${*}&chat_id=${{ secrets.TELEGRAM_TO }}&parse_mode=Markdown&disable_notification=True"
+          }
+          sendTG "\`I have pushed new images to docker(megaria)\` %0A[Image are here](https://hub.docker.com/r/narima/megaria/tags)" &> /dev/null
