@@ -6,8 +6,8 @@ RUN apt-get -qq update && apt-get -qq -y install --no-install-recommends softwar
     && apt-add-repository non-free \
     && echo "deb http://deb.debian.org/debian unstable main contrib" > /etc/apt/sources.list.d/unstable.list \
     # qbittorrent enchanced
-    && echo 'deb http://download.opensuse.org/repositories/home:/nikoneko:/test/Debian_Unstable/ /' | sudo tee /etc/apt/sources.list.d/home:nikoneko:test.list \
-    && curl -fsSL https://download.opensuse.org/repositories/home:nikoneko:test/Debian_Unstable/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_nikoneko_test.gpg > /dev/null \
+    && echo 'deb http://download.opensuse.org/repositories/home:/nikoneko:/test/Debian_Unstable/ /' | tee /etc/apt/sources.list.d/home:nikoneko:test.list \
+    && curl -fsSL https://download.opensuse.org/repositories/home:nikoneko:test/Debian_Unstable/Release.key | gpg --dearmor | tee /etc/apt/trusted.gpg.d/home_nikoneko_test.gpg > /dev/null \
     # for important package
     && apt-get -qq update \
     && apt-get -qq -y install --no-install-recommends \
