@@ -3,7 +3,7 @@ name: Megaria Build Ubuntu
 on:
   push:
     paths:
-      - "Dockerfile-Ubuntu"
+      - "/megasdk/Dockerfile-Ubuntu"
   workflow_dispatch:
 
 jobs:

@@ -2,7 +2,7 @@ name: Megaria Build Image Debian Sid
 on:
   push:
     paths:
-      - "Dockerfile-Sid"
+      - "/megasdk/Dockerfile-Sid"
   workflow_dispatch:
 
 jobs:

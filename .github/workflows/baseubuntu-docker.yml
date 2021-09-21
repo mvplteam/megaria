@@ -3,7 +3,7 @@ name: Megaria Build Base Ubuntu
 on:
   push:
     paths:
-      - "Dockerfile-Base"
+      - "/base/Dockerfile-Base"
   workflow_dispatch:
 
 jobs:

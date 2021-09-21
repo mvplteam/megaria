@@ -2,7 +2,7 @@ name: Megaria Build Image
 on:
   push:
     paths:
-      - "Dockerfile"
+      - "/megasdk/Dockerfile"
   workflow_dispatch:
 
 jobs:
