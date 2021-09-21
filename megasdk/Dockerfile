@@ -24,7 +24,7 @@ RUN apt-get -qq update && apt-get -qq -y install --no-install-recommends softwar
     # requirements mirror-bot
     && curl https://raw.githubusercontent.com/Ncode2014/megaria/req/requirements.txt -o requirements.txt\
     && pip3 install --no-cache-dir -r requirements.txt \
-    && rm requirements.txt \
+    && rm -f requirements.txt \
     # setup mega sdk
     && MEGA_SDK_VERSION='3.9.5' \
     && git clone https://github.com/meganz/sdk.git --depth=1 -b v$MEGA_SDK_VERSION ~/home/sdk \
