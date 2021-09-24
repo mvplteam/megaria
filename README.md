@@ -10,17 +10,11 @@ docker pull narima/megaria:latest
 ```
 docker pull narima/megaria:ubuntu 
 ```
-```
-docker pull narima/megaria:alpine
-```
 
 or
 
 ```
 FROM narima/megaria:latest
-```
-```
-FROM narima/megaria:alpine
 ```
 ```
 FROM narima/megaria:ubuntu
