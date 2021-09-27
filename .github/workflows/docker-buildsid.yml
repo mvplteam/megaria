@@ -2,7 +2,7 @@ name: Megaria Build Image Debian Sid
 on:
   push:
     paths:
-      - "/megasdk/Dockerfile-Sid"
+      - "./megasdk/Dockerfile-Sid"
   workflow_dispatch:
 
 jobs:
@@ -31,7 +31,7 @@ jobs:
           file: ./megasdk/Dockerfile-Sid
           platforms: linux/amd64
           push: true
-          tags: narima/megaria:latest
+          tags: narima/megaria:sid
 
       - name: Alert via Telegram
         run: |

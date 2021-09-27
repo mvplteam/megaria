@@ -13,7 +13,7 @@ RUN set -ex \
         # important
         tzdata apt-utils build-essential \
         # build deps
-        autoconf automake g++-11 gcc-11 gcc git libtool m4 make swig \
+        autoconf automake g++ gcc gcc git libtool m4 make swig \
         # mega sdk deps
         libc-ares-dev qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools libcrypto++-dev libcurl4-openssl-dev \
         libfreeimage-dev libsodium-dev libsqlite3-dev libssl-dev zlib1g-dev libc6 \

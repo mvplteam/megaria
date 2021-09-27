@@ -3,7 +3,7 @@ name: Megaria Build Base Bullseye
 on:
   push:
     paths:
-      - "/base/Dockerfile-BaseBull"
+      - "./base/Dockerfile-BaseBull"
   workflow_dispatch:
 
 jobs:

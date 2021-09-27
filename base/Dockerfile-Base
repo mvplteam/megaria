@@ -1,7 +1,10 @@
-FROM ubuntu:21.10
+FROM ubuntu:21.04
 
+# important packages
 RUN ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
-RUN apt update && apt -y upgrade && apt install -y --no-install-recommends tzdata locales dirmngr
+RUN apt update && apt -y upgrade && apt install -y --no-install-recommends tzdata locales
+# set zone-info and locate
+RUN ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 RUN locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en

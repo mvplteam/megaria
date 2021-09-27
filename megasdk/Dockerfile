@@ -4,7 +4,6 @@ FROM narima/base:bull
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN apt-get -qq update && apt-get -qq -y install --no-install-recommends software-properties-common curl gpg \
     && apt-add-repository non-free \
-    && echo "deb http://deb.debian.org/debian unstable main contrib" > /etc/apt/sources.list.d/unstable.list \
     # for important package
     && apt-get -qq update \
     && apt-get -qq -y install --no-install-recommends \
@@ -18,7 +17,7 @@ RUN apt-get -qq update && apt-get -qq -y install --no-install-recommends softwar
         neofetch qbittorrent-nox p7zip-full p7zip-rar ffmpeg \
         # arm64 stuff
         libpq-dev libffi-dev \
-    && apt-get -qq -t unstable upgrade -y && apt-get -qq -y autoremove --purge \
+    && apt-get -qq -y autoremove --purge \
     && sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen \
     && locale-gen \
     # requirements mirror-bot

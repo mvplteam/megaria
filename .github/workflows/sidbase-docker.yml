@@ -3,7 +3,7 @@ name: Megaria Build Base Sid
 on:
   push:
     paths:
-      - "/base/Dockerfile-BaseSid"
+      - "./base/Dockerfile-BaseSid"
   workflow_dispatch:
 
 jobs:
