@@ -3,7 +3,7 @@ name: Megaria Build Base Bullseye
 on:
   push:
     paths:
-      - "./base/Dockerfile-BaseBull"
+      - "base/Dockerfile-BaseBull"
   workflow_dispatch:
 
 jobs:
@@ -29,7 +29,7 @@ jobs:
         uses: docker/build-push-action@v2.7.0
         with:
           context: .
-          file: ./base/Dockerfile-BaseBull
+          file: base/Dockerfile-BaseBull
           platforms: linux/amd64, linux/arm64
           push: true
           tags: narima/base:bull

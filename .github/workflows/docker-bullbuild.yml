@@ -2,7 +2,7 @@ name: Megaria Build Image
 on:
   push:
     paths:
-      - "./megasdk/Dockerfile"
+      - "megasdk/Dockerfile"
   workflow_dispatch:
 
 jobs:
@@ -28,7 +28,7 @@ jobs:
         uses: docker/build-push-action@v2.7.0
         with:
           context: .
-          file: ./megasdk/Dockerfile
+          file: megasdk/Dockerfile
           platforms: linux/amd64, linux/arm64
           push: true
           tags: narima/megaria:latest
