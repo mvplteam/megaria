@@ -29,7 +29,7 @@ qbittorrent-api
 torrentool==1.1.0
 https://github.com/nekaru-storage/pyshorteners/archive/refs/heads/main.zip
 https://github.com/yt-dlp/yt-dlp/archive/refs/heads/master.zip
-https://github.com/ytdl-org/youtube-dl/archive/refs/heads/master.zip
+youtube-dl==2021.06.06
 python-magic
 https://github.com/python-telegram-bot/python-telegram-bot/archive/refs/heads/master.zip
 pytz
